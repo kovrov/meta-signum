@@ -6,7 +6,6 @@ inherit core-image
 
 IMAGE_FEATURES += "\
     package-management \
-    splash \
     ssh-server-openssh \
     "
 
@@ -15,11 +14,15 @@ IMAGE_INSTALL += "\
     gstreamer1.0-meta-video \
     gstreamer1.0-plugins-bad-fbdevsink \
     gstreamer1.0-plugins-bad-mpegpsdemux \
+    hidrawtouch \
     kernel-modules \
+    ntp \
+    ntpdate \
     openssh-sftp-server \
     packagegroup-qt5-base \
     packagegroup-qt5-extra \
     packagegroup-qt5-fonts \
     packagegroup-qt5-graphics \
     packagegroup-qt5-web \
+    tzdata \
     "

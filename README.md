@@ -25,6 +25,9 @@ Edit *$BASE/build-rpi/conf/bblayers.conf* so the `BBLAYERS` variable contains fo
       ${TOPDIR}/../poky-fido/meta-signum/meta-rpi \
       ${TOPDIR}/../poky-fido/meta-raspberrypi \
       ${TOPDIR}/../poky-fido/meta-qt5 \
+      ${TOPDIR}/../poky-fido/meta-openembedded/meta-networking \
+      ${TOPDIR}/../poky-fido/meta-openembedded/meta-python \
+      ${TOPDIR}/../poky-fido/meta-openembedded/meta-oe \
       ${TOPDIR}/../poky-fido/meta \
       ${TOPDIR}/../poky-fido/meta-yocto \
       "
