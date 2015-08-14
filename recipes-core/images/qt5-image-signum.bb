@@ -24,6 +24,7 @@ IMAGE_INSTALL += "\
     packagegroup-qt5-fonts \
     packagegroup-qt5-graphics \
     packagegroup-qt5-web \
+    quickews \
     quicknetwork \
     signum \
     tzdata \
