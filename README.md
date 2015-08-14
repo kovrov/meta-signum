@@ -65,6 +65,15 @@ Where "sdx" is the name of SD card device on "sysfs". The name could be queried 
 
 Comprehensive information could be fond on Raspberry Pi Documentation site -- [Installing Operating System Images on Linux](https://www.raspberrypi.org/documentation/installation/installing-images/linux.md)
 
+### Configuring
+
+To configure TimeZone manually:
+
+    ln -sf /usr/share/zoneinfo/America/Los_Angeles /etc/localtime
+    /etc/init.d/ntpd stop
+    ntpdate -s time.nist.gov
+    /etc/init.d/ntpd start
+
 
 ## Qt5 Toolchain and SDK
 
