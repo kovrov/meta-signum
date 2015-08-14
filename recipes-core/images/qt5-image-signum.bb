@@ -25,5 +25,6 @@ IMAGE_INSTALL += "\
     packagegroup-qt5-graphics \
     packagegroup-qt5-web \
     quicknetwork \
+    signum \
     tzdata \
     "

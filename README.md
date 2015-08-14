@@ -67,12 +67,18 @@ Comprehensive information could be fond on Raspberry Pi Documentation site -- [I
 
 ### Configuring
 
+After image is written to SD card, device is ready to be booted. If ethernet cable is connected, device's IP address should be displayed on the screen. `ssh` to the device as `root` without password.
+
 To configure TimeZone manually:
 
     ln -sf /usr/share/zoneinfo/America/Los_Angeles /etc/localtime
     /etc/init.d/ntpd stop
     ntpdate -s time.nist.gov
     /etc/init.d/ntpd start
+
+### Hacking
+
+Signum is the application that being started automatically when device is booted. The init script `/etc/init.d/signum` could be used stop or start the app. QML files are located in `/usr/share/signum/`.
 
 
 ## Qt5 Toolchain and SDK
