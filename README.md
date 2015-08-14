@@ -65,6 +65,20 @@ Where "sdx" is the name of SD card device on "sysfs". The name could be queried 
 
 Comprehensive information could be fond on Raspberry Pi Documentation site -- [Installing Operating System Images on Linux](https://www.raspberrypi.org/documentation/installation/installing-images/linux.md)
 
+### Tuning
+
+Depending on screen model, a specific HDMI mode may be needed. For example http://www.waveshare.com/7inch-HDMI-LCD-B.htm is 800x480 60Hz. Edit config.txt:
+
+    hdmi_force_hotplug=1
+    hdmi_group=2
+    hdmi_mode=1
+    hdmi_mode=87
+    hdmi_cvt 800 480 60 6 0 0 0
+    max_usb_current=1
+
+More details here http://elinux.org/RPiconfig
+
+
 ### Configuring
 
 After image is written to SD card, device is ready to be booted. If ethernet cable is connected, device's IP address should be displayed on the screen. `ssh` to the device as `root` without password.
