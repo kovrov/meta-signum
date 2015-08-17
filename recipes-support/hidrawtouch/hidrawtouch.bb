@@ -15,7 +15,7 @@ DEPENDS += "qtbase udev"
 inherit qmake5
 
 SRC_URI = "git://github.com/kovrov/hidrawtouch.git;protocol=https"
-SRCREV = "774fa39c6f4b63243e20b056c0f8d303139bce70"
+SRCREV = "bdaa430ef346fe4544630f43ab595fddcf9be773"
 
 PV = "0.1+git${SRCPV}"
 S = "${WORKDIR}/git/"

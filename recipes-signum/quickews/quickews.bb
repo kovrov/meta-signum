@@ -15,7 +15,7 @@ SRC_URI = "git://github.com/kovrov/quickews.git;protocol=https \
            file://COPYING \
 "
 
-SRCREV = "ac0ed134121b555d5862da2b1bd1db26300f50fc"
+SRCREV = "8e9333a7ccc346642acaebf4ec245714db37d771"
 
 PV = "0.1+git${SRCPV}"
 S = "${WORKDIR}/git/"
