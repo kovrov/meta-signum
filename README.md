@@ -90,6 +90,10 @@ To configure TimeZone manually:
     ntpdate -s time.nist.gov
     /etc/init.d/ntpd start
 
+To force SSH login to use only Public Key Authentication. Append the public keys to `/home/root/.ssh/authorized_keys`. Edit following section of `/etc/ssh/sshd_config`: 
+
+    PasswordAuthentication no
+
 ### Hacking
 
 Signum is the application that being started automatically when device is booted. The init script `/etc/init.d/signum` could be used stop or start the app. QML files are located in `/usr/share/signum/`.
