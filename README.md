@@ -10,6 +10,7 @@ Clone Yocto and required layers:
     git clone -b fido git://git.yoctoproject.org/poky poky-fido
     cd poky-fido
     git clone -b fido git://git.yoctoproject.org/meta-raspberrypi
+    git clone -b fido git://git.openembedded.org/meta-openembedded
     git clone -b fido https://github.com/meta-qt5/meta-qt5.git
     git clone -b fido https://github.com/kovrov/meta-signum.git
 
@@ -34,7 +35,7 @@ Edit *$BASE/build-rpi/conf/bblayers.conf* so the `BBLAYERS` variable contains fo
 
 Add or update BitBake variables in *$BASE/build-rpi/conf/local.conf*:
 
-    MACHINE = "raspberrypi"
+    MACHINE = "raspberrypi2"
     GPU_MEM = "128"
     DISTRO_FEATURES_remove = "x11 wayland"
     PACKAGE_CLASSES = "package_ipk"
@@ -55,10 +56,10 @@ The image name is "qt5-image-signum"
 
 ## Deploying
 
-Generated images located in *$BASE/build-rpi/tmp/deploy/images/raspberrypi/*. An image could be written to SD card partition with `dd` tool.
+Generated images located in *$BASE/build-rpi/tmp/deploy/images/raspberrypi2/*. An image could be written to SD card partition with `dd` tool.
 
     sudo umount /dev/sdx*
-    sudo dd if=$BASE/build-rpi/tmp/deploy/images/raspberrypi/qt5-image-signum-raspberrypi.rpi-sdimg of=/dev/sdx
+    sudo dd if=tmp/deploy/images/raspberrypi2/qt5-image-signum-raspberrypi2.rpi-sdimg of=/dev/sdx
     sync
 
 Where "sdx" is the name of SD card device on "sysfs". The name could be queried with `df -h`.
