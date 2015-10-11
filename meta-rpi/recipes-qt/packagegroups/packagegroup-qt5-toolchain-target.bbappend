@@ -1,4 +1,4 @@
 RDEPENDS_${PN} += "\
-    vc-graphics-hardfp \
-    vc-graphics-hardfp-dev \
-    "
+ userland \
+ userland-dev \
+"

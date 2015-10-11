@@ -7,6 +7,7 @@ HOMEPAGE = "https://github.com/kovrov/signum"
 LICENSE = "GPLv3"
 LIC_FILES_CHKSUM = "file://LICENSE;md5=7702f203b58979ebbc31bfaeb44f219c"
 
+DEPENDS += "qtbase"
 RDEPENDS_${PN} = "qtdeclarative quicknetwork quickews bash"
 
 SRC_URI = "\
