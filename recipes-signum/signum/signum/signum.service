@@ -1,0 +1,10 @@
+[Unit]
+Description=Signum Daemon
+
+[Service]
+ExecStart=/usr/bin/qt5/qmlscene -platform eglfs -plugin hidrawtouch /usr/share/signum/main.qml
+Environment=LANG=en_US HOME=/home/root
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target

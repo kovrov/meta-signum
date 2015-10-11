@@ -38,6 +38,10 @@ Add or update BitBake variables in *$BASE/build-rpi/conf/local.conf*:
     MACHINE = "raspberrypi2"
     GPU_MEM = "128"
     DISTRO_FEATURES_remove = "x11 wayland"
+    DISTRO_FEATURES_append = " systemd"
+    VIRTUAL-RUNTIME_init_manager = "systemd"
+    DISTRO_FEATURES_BACKFILL_CONSIDERED = "sysvinit"
+    VIRTUAL-RUNTIME_initscripts = ""
     PACKAGE_CLASSES = "package_ipk"
 
 The `MACHINE` variable could be "raspberrypi" or "raspberrypi2". The `GPU_MEM` variable is used to configure Raspberry Pi GPU memory in megabytes. Optionally `DL_DIR` variable could be set to a common location so archives downloaded from upstream repositories could be shared between different build configurations.

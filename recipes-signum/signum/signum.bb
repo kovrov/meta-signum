@@ -12,6 +12,7 @@ RDEPENDS_${PN} = "qtdeclarative quicknetwork quickews bash"
 
 SRC_URI = "\
     git://github.com/kovrov/signum.git;protocol=https \
+    file://signum.service \
     file://signum \
 "
 
@@ -20,14 +21,19 @@ SRCREV = "2a62f60066b4cc03c8790efa2fa5d8557314cf5c"
 PV = "0.1+git${SRCPV}"
 S = "${WORKDIR}/git/"
 
-inherit qmake5 update-rc.d
+inherit qmake5 update-rc.d systemd
 
 FILES_${PN} += "/usr/share/signum"
 
 INITSCRIPT_NAME = "signum"
 INITSCRIPT_PARAMS = "defaults"
 
+SYSTEMD_SERVICE_${PN} = "signum.service"
+
 do_install_append() {
     install -d ${D}${sysconfdir}/init.d
     install -m 0755 ${WORKDIR}/signum ${D}${sysconfdir}/init.d
+
+    install -d ${D}${systemd_unitdir}/system
+    install -m 0644 ${WORKDIR}/signum.service ${D}${systemd_unitdir}/system/
 }
