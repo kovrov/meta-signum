@@ -1,5 +1,7 @@
 FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
 
+RDEPENDS_${PN} += "xkeyboard-config"
+
 PACKAGECONFIG_GL = ""
 PACKAGECONFIG_X11 = ""
 
@@ -15,6 +17,7 @@ PACKAGECONFIG_append =  " \
     teststools \
     tools \
     widgets \
+    xkb \
     "
 
 # Workarounds for getting EGL and GLES2

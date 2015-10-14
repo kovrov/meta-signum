@@ -26,6 +26,7 @@ IMAGE_INSTALL += "\
     packagegroup-qt5-web \
     quickews \
     quicknetwork \
+    qtwayland-plugins \
     signum \
     tzdata \
     "
