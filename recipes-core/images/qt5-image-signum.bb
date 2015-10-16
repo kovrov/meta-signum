@@ -10,6 +10,7 @@ IMAGE_FEATURES += "\
     "
 
 IMAGE_INSTALL += "\
+    dosbox \
     gstreamer1.0-meta-base \
     gstreamer1.0-meta-video \
     gstreamer1.0-plugins-bad-fbdevsink \

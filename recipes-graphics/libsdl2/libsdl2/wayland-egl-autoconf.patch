@@ -1,0 +1,29 @@
+commit 3d2deb642d1ce3dfb5922a8eed8b5752e70c70ba
+Author: Sergejs Kovrovs <sergejs.kovrovs@lge.com>
+Date:   Thu Oct 15 14:47:03 2015 -0700
+
+    configure.in: use cflags egl in CheckOpenGLESX11
+
+diff --git a/configure.in b/configure.in
+index 3d8a2de..c8f1d2b 100644
+--- a/configure.in
++++ b/configure.in
+@@ -1890,6 +1890,9 @@ dnl Find OpenGL ES
+ CheckOpenGLESX11()
+ {
+     if test x$enable_video = xyes -a x$enable_video_opengles = xyes; then
++        save_CFLAGS="$CFLAGS"
++        CFLAGS=`$PKG_CONFIG --cflags egl`
++
+         AC_MSG_CHECKING(for EGL support)
+         video_opengl_egl=no
+         AC_TRY_COMPILE([
+@@ -1934,6 +1937,8 @@ CheckOpenGLESX11()
+             AC_DEFINE(SDL_VIDEO_RENDER_OGL_ES2, 1, [ ])
+             SUMMARY_video="${SUMMARY_video} opengl_es2"
+         fi
++
++        CFLAGS="$save_CFLAGS"
+     fi
+ }
+ 

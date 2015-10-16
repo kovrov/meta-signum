@@ -1,0 +1,78 @@
+commit b5e69a8bc9ea5af57d695c8714054dd0214726d9
+Author: Sergejs Kovrovs <sergejs.kovrovs@lge.com>
+Date:   Thu Oct 15 18:51:30 2015 -0700
+
+    Add wayland-egl.c
+
+diff --git a/src/video/wayland/wayland-egl.c b/src/video/wayland/wayland-egl.c
+new file mode 100644
+index 0000000..ffe3b4f
+--- /dev/null
++++ b/src/video/wayland/wayland-egl.c
+@@ -0,0 +1,66 @@
++#include <stdlib.h>
++#include <wayland-egl.h>
++
++struct wl_egl_window {
++    struct wl_surface *surface;
++
++    int width;
++    int height;
++    int dx;
++    int dy;
++
++    int attached_width;
++    int attached_height;
++
++    void *priv;
++    void (*resize_callback)(struct wl_egl_window *, void *);
++};
++
++struct wl_egl_window *
++wl_egl_window_create(struct wl_surface *surface, int width, int height)
++{
++    struct wl_egl_window *egl_window;
++
++    egl_window = malloc(sizeof *egl_window);
++    if (!egl_window)
++        return NULL;
++
++    egl_window->surface = surface;
++    egl_window->priv = NULL;
++    egl_window->resize_callback = NULL;
++    wl_egl_window_resize(egl_window, width, height, 0, 0);
++    egl_window->attached_width  = 0;
++    egl_window->attached_height = 0;
++
++    return egl_window;
++}
++
++void
++wl_egl_window_destroy(struct wl_egl_window *egl_window)
++{
++    free(egl_window);
++}
++
++
++void
++wl_egl_window_resize(struct wl_egl_window *egl_window,
++                     int width, int height, int dx, int dy)
++{
++    egl_window->width  = width;
++    egl_window->height = height;
++    egl_window->dx     = dx;
++    egl_window->dy     = dy;
++
++    if (egl_window->resize_callback)
++        egl_window->resize_callback(egl_window, egl_window->priv);
++}
++
++void
++wl_egl_window_get_attached_size(struct wl_egl_window *egl_window,
++                                int *width, int *height)
++{
++    if (width)
++        *width = egl_window->attached_width;
++    if (height)
++        *height = egl_window->attached_height;
++}

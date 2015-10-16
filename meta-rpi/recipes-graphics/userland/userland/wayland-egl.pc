@@ -1,0 +1,10 @@
+prefix=/usr
+exec_prefix=${prefix}
+libdir=${exec_prefix}/lib
+includedir=${prefix}/include
+
+Name: Wayland EGL (accelerated)
+Description: Wayland EGL Library
+Version: 1.3.0
+Cflags: -I${includedir}/vc -I${includedir}/interface -I${includedir}/interface/vcos -I${includedir}/interface/vcos/pthreads
+Libs: -L${libdir} -lEGL -lGLESv2 -lwayland-egl
