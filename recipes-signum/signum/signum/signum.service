@@ -2,7 +2,7 @@
 Description=Signum Daemon
 
 [Service]
-ExecStart=/usr/bin/qt5/qmlscene -platform eglfs -plugin hidrawtouch /usr/share/signum/main.qml
+ExecStart=/usr/bin/qt5/qmlscene -platform eglfs /usr/share/signum/main.qml
 Environment=LANG=en_US HOME=/home/root
 Restart=on-failure
 
