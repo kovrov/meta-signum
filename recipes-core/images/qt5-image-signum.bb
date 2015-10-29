@@ -26,7 +26,7 @@ IMAGE_INSTALL += "\
     packagegroup-qt5-web \
     quickews \
     quicknetwork \
-    qtwayland-plugins \
+    ${@bb.utils.contains('DISTRO_FEATURES', 'wayland', 'qtwayland-plugins', '', d)} \
     signum \
     tzdata \
     "

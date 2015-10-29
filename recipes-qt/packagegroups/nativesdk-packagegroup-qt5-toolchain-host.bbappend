@@ -1,3 +1,4 @@
+
 RDEPENDS_${PN} += "\
- nativesdk-wayland \
+ ${@bb.utils.contains('DISTRO_FEATURES', 'wayland', 'nativesdk-wayland', '', d)} \
 "

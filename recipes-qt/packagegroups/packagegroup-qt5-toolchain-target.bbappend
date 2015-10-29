@@ -1,4 +1,4 @@
 RDEPENDS_${PN} += "\
  libsdl2-dev \
- qtwayland-dev \
+ ${@bb.utils.contains('DISTRO_FEATURES', 'wayland', 'qtwayland-dev', '', d)} \
 "
