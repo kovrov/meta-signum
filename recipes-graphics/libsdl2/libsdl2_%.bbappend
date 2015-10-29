@@ -1,4 +1,6 @@
 DEPENDS += "\
+ libxkbcommon \
+ virtual/egl \
  ${@bb.utils.contains('DISTRO_FEATURES', 'wayland', 'wayland', '', d)} \
 "
 
