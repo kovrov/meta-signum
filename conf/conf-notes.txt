@@ -1,0 +1,3 @@
+Common targets are:
+    qt5-image-signum
+    meta-toolchain-qt5
