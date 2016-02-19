@@ -11,9 +11,9 @@ DEPENDS += "qtbase"
 RDEPENDS_${PN} = "qtdeclarative quicknetwork quickews bash"
 
 SRC_URI = "\
-    git://github.com/kovrov/signum.git;protocol=https \
-    file://signum.service \
-    file://signum \
+ git://github.com/kovrov/signum.git;protocol=https \
+ file://signum.service \
+ file://signum \
 "
 
 SRCREV = "2a62f60066b4cc03c8790efa2fa5d8557314cf5c"

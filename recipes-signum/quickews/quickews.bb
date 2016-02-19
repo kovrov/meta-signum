@@ -11,8 +11,9 @@ DEPENDS += "qtbase qtdeclarative"
 
 inherit qmake5
 
-SRC_URI = "git://github.com/kovrov/quickews.git;protocol=https \
-           file://COPYING \
+SRC_URI = "\
+ git://github.com/kovrov/quickews.git;protocol=https \
+ file://COPYING \
 "
 
 SRCREV = "b81e4ad2e3b3874925cafdde141c5aaf7e13ac54"

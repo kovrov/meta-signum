@@ -1,0 +1,23 @@
+# LAYER_CONF_VERSION is increased each time build/conf/bblayers.conf
+# changes incompatibly
+LCONF_VERSION = "6"
+
+BBPATH = "${TOPDIR}"
+BBFILES ?= ""
+
+BBLAYERS ?= " \
+  ##COREBASE##/meta \
+  ##COREBASE##/meta-yocto \
+  ##COREBASE##/meta-openembedded/meta-oe \
+  ##COREBASE##/meta-openembedded/meta-networking \
+  ##COREBASE##/meta-openembedded/meta-python \
+  ##COREBASE##/meta-qt5 \
+  ##COREBASE##/meta-signum \
+  ##COREBASE##/meta-signum/meta-rpi \
+  ##COREBASE##/meta-raspberrypi \
+  "
+
+BBLAYERS_NON_REMOVABLE ?= " \
+  ##OEROOT##/meta \
+  ##OEROOT##/meta-yocto \
+  "

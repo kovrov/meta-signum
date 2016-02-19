@@ -1,26 +1,34 @@
-SRCREV = "cc92dfd6c4e8e2d90c3903dccfe77f7274b8d1b7"
+DEPENDS += "wayland"
 
 FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
 
-# file://vchiq.sh
 SRC_URI_append = "\
  file://egl.pc \
- file://0001-fix-gcc-5.x-inlines.patch \
- file://0002-fix-musl-build.patch \
- file://0003-fix-alloc-size-uninitialized.patch \
+ file://glesv2.pc \
+ file://bcm_host.pc \
+ file://0001-wayland-support.patch \
+ file://buildme.patch \
+ file://dependencies.patch \
 "
+
+EXTRA_OECMAKE += "-DBUILD_WAYLAND=1"
+
+PACKAGECONFIG += "wayland"
 
 do_install_append() {
     install -d ${D}${libdir}/pkgconfig
     install -m 0644 ${WORKDIR}/egl.pc ${D}${libdir}/pkgconfig/
-
-    # install -d ${D}/${sysconfdir}/init.d
-    # install -m 0755 ${WORKDIR}/vchiq.sh ${D}${sysconfdir}/init.d/
+    install -m 0644 ${WORKDIR}/glesv2.pc ${D}${libdir}/pkgconfig/
+    install -m 0644 ${WORKDIR}/bcm_host.pc ${D}${libdir}/pkgconfig/
 }
 
-# INITSCRIPT_NAME = "vchiq.sh"
-# INITSCRIPT_PARAMS = "start 03 S ."
-
-FILES_${PN} += "\
+FILES_${PN}_append = "\
  ${libdir}/pkgconfig \
+"
+
+FILES_${PN}-dbg += "${libdir}/.debug"
+
+FILES_${PN}-dev += " \
+ ${libdir}/libEGL.so \
+ ${libdir}/libGLESv2.so \
 "

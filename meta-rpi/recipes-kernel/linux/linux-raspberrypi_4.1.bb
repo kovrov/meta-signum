@@ -7,6 +7,6 @@ require recipes-kernel/linux/linux-raspberrypi.inc
 
 do_install_prepend() {
     if [ -n "${KERNEL_DEVICETREE}" ]; then
-          mkdir -p ${B}/arch/${ARCH}/boot/dts/overlays
+        mkdir -p ${B}/arch/${ARCH}/boot/dts/overlays
     fi
 }

@@ -7,7 +7,7 @@
 DAEMON_PATH="/usr/share/signum"
 
 DAEMON=/usr/bin/qt5/qmlscene
-DAEMONOPTS="-platform eglfs -plugin hidrawtouch /usr/share/signum/main.qml"
+DAEMONOPTS="-platform eglfs /usr/share/signum/main.qml"
 
 NAME=signum
 DESC="Signum daemon description"

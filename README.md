@@ -7,36 +7,37 @@ Clone Yocto and required layers:
 
     export BASE=~/projects/signum-pi
     mkdir -p $BASE && cd $BASE
-    git clone -b fido git://git.yoctoproject.org/poky poky-fido
-    cd poky-fido
-    git clone -b fido git://git.yoctoproject.org/meta-raspberrypi
-    git clone -b fido git://git.openembedded.org/meta-openembedded
-    git clone -b fido https://github.com/meta-qt5/meta-qt5.git
-    git clone -b fido https://github.com/kovrov/meta-signum.git
+    git clone -b jethro git://git.yoctoproject.org/poky
+    cd poky
+    git clone -b jethro git://git.yoctoproject.org/meta-raspberrypi
+    git clone -b jethro git://git.openembedded.org/meta-openembedded
+    git clone -b jethro https://github.com/meta-qt5/meta-qt5.git
+    git clone -b jethro https://github.com/kovrov/meta-signum.git
 
-Initialize build configuration "build-rpi":
+Initialize build configuration "build":
 
     cd $BASE
-    . poky-fido/oe-init-build-env build-rpi
+    TEMPLATECONF=../poky/meta-signum/conf source poky/oe-init-build-env build
 
-Edit *$BASE/build-rpi/conf/bblayers.conf* so the `BBLAYERS` variable contains following paths:
+Edit *$BASE/build/conf/bblayers.conf* so the `BBLAYERS` variable contains following paths:
 
-    BBLAYERS ?= " \
-      ${TOPDIR}/../poky-fido/meta-signum \
-      ${TOPDIR}/../poky-fido/meta-signum/meta-rpi \
-      ${TOPDIR}/../poky-fido/meta-raspberrypi \
-      ${TOPDIR}/../poky-fido/meta-qt5 \
-      ${TOPDIR}/../poky-fido/meta-openembedded/meta-networking \
-      ${TOPDIR}/../poky-fido/meta-openembedded/meta-python \
-      ${TOPDIR}/../poky-fido/meta-openembedded/meta-oe \
-      ${TOPDIR}/../poky-fido/meta \
-      ${TOPDIR}/../poky-fido/meta-yocto \
-      "
+    POKYDIR := "${@os.path.abspath(os.path.dirname(d.getVar('FILE', True)) + '/../../poky')}"
+    BBLAYERS ?= "\
+     ${POKYDIR}/meta \
+     ${POKYDIR}/meta-yocto \
+     ${POKYDIR}/meta-openembedded/meta-oe \
+     ${POKYDIR}/meta-openembedded/meta-networking \
+     ${POKYDIR}/meta-openembedded/meta-python \
+     ${POKYDIR}/meta-qt5 \
+     ${POKYDIR}/meta-signum \
+     ${POKYDIR}/meta-signum/meta-rpi \
+     ${POKYDIR}/meta-raspberrypi \
+    "
 
-Add or update BitBake variables in *$BASE/build-rpi/conf/local.conf*:
+Add or update BitBake variables in *$BASE/build/conf/local.conf*:
 
     MACHINE = "raspberrypi2"
-    GPU_MEM = "128"
+    GPU_MEM = "256"
     DISTRO_FEATURES_remove = "x11 wayland"
     DISTRO_FEATURES_append = " systemd"
     VIRTUAL-RUNTIME_init_manager = "systemd"
@@ -60,7 +61,7 @@ The image name is "qt5-image-signum"
 
 ## Deploying
 
-Generated images located in *$BASE/build-rpi/tmp/deploy/images/raspberrypi2/*. An image could be written to SD card partition with `dd` tool.
+Generated images located in *$BASE/build/tmp/deploy/images/raspberrypi2/*. An image could be written to SD card partition with `dd` tool.
 
     sudo umount /dev/sdx*
     sudo dd if=tmp/deploy/images/raspberrypi2/qt5-image-signum-raspberrypi2.rpi-sdimg of=/dev/sdx
@@ -110,7 +111,7 @@ The *meta-qt5* provides an installable Qt5 toolchain and SDK. The recipe name is
 
     bitbake meta-toolchain-qt5
 
-The generated binary installer located in *$BASE/build-rpi/tmp/deploy/sdk/*. It is an interactive installation script:
+The generated binary installer located in *$BASE/build/tmp/deploy/sdk/*. It is an interactive installation script:
 
     tmp/deploy/sdk/poky-glibc-x86_64-meta-toolchain-qt5-arm1176jzfshf-vfp-toolchain-1.8.sh -d <dir>
 
@@ -118,7 +119,7 @@ If omitted, the `<dir>` is "/opt/poky/1.8" which would require running installer
 
 To use the toolchain, following *environment-setup script* must be sourced every time:
 
-    . /opt/poky/1.8/environment-setup-arm1176jzfshf-vfp-poky-linux-gnueabi
+    source /opt/poky/1.8/environment-setup-arm1176jzfshf-vfp-poky-linux-gnueabi
 
 ## Credits
 
